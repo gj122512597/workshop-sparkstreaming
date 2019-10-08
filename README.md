@@ -32,5 +32,10 @@ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partit
 kafka-topics --list --zookeeper localhost:2181
 
 ```
+
+```
+生产
 kafka-console-producer.sh --broker-list localhost:9092 --topic tw-workshop
+消费
 kafka-console-consumer --bootstrap-server localhost:9092 --topic tw-workshop
+```
