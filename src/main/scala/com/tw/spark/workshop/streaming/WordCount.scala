@@ -23,18 +23,6 @@ object WordCount {
     wordToSumDSTream.print()
 
 
-//    wordToSumDSTream.foreachRDD(rdd => {
-//
-//
-//      //      println("driver  *********** ************")
-//
-//      rdd.foreach(d => {
-//
-//        //        println("rdd foreach $$$$$$$$$$$$$$$$$$$$$$$$$$$")
-//        println(d._1 + "count:" + d._2)
-//      })
-//    })
-
     //启动采集器
     ssc.start()
     //Driver等待采集器的执行
