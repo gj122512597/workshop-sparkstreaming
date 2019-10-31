@@ -1,3 +1,5 @@
+package com.tw.spark.workshop.streaming.WebPagePopularity
+
 import java.util.Properties
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
@@ -8,8 +10,7 @@ import scala.util.Random
 //网页 ID|点击次数|停留时间 (分钟)|是否点赞
 
 class UserBehaviorMsgProducer(brokers: String, topic: String) extends Runnable {
-  private val brokerList = brokers
-  private val targetTopic = topic
+
 
   val props = new Properties()
   props.put("bootstrap.servers", brokers)
@@ -72,12 +73,16 @@ class UserBehaviorMsgProducer(brokers: String, topic: String) extends Runnable {
 
 object UserBehaviorMsgProducerClient {
   def main(args: Array[String]) {
-    if (args.length < 2) {
-      println("Usage:UserBehaviorMsgProducerClient 192.168.1.1:9092 user-behavior-topic")
-      System.exit(1)
-    }
-//    start the message producer thread
+    //    if (args.length < 2) {
+    //      println("Usage:UserBehaviorMsgProducerClient 192.168.1.1:9092 user-behavior-topic")
+    //      System.exit(1)
+    //    }
+    //    start the message producer thread
 
-    new Thread(new UserBehaviorMsgProducer(args(0), args(1))).start()
+    //    new Thread(new UserBehaviorMsgProducer(args(0), args(1))).start()
+
+    val brokerList: String = "localhost:9092"
+    val targetTopic: String = "tw-workshop"
+    new Thread(new UserBehaviorMsgProducer(brokerList, targetTopic)).start()
   }
 }
