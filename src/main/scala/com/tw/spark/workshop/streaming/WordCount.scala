@@ -7,29 +7,17 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 object WordCount {
   def main(args: Array[String]): Unit = {
 
-    val conf = new SparkConf().setAppName("stream word count").setMaster("local[*]")
 
-    val ssc = new StreamingContext(conf, Seconds(5))
+    //    构建 Streaming Context 对象
 
+    //    创建 InputDStream
 
-    val socketLineDStream: ReceiverInputDStream[String] = ssc.socketTextStream("localhost", 9999)
+    //    操作 Dstream
 
-    val wordDStream: DStream[String] = socketLineDStream.flatMap(_.split(" "))
+    //    启动采集器
 
-    val mapDStream: DStream[(String, Int)] = wordDStream.map(word => (word, 1))
+    //    Driver等待采集器的执行
 
-    val wordToSumDSTream: DStream[(String, Int)] = mapDStream.reduceByKey(_ + _)
-
-    wordToSumDSTream.print()
-
-
-    //启动采集器
-    ssc.start()
-    //Driver等待采集器的执行
-    ssc.awaitTermination()
-
-    //can't be called
-    ssc.stop()
   }
 
 }

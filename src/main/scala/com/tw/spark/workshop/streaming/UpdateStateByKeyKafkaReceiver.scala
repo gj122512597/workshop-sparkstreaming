@@ -18,7 +18,8 @@ object UpdateStateByKeyKafkaReceiver {
 
     val ssc = new StreamingContext(conf, Seconds(5))
 
-    //设置保存数据状态的检查点目录
+
+    //设置保存数据状态的检查点s目录
     ssc.checkpoint("checkpoint")
 
 
