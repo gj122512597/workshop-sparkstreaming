@@ -8,7 +8,7 @@ object WordCount {
   def main(args: Array[String]): Unit = {
 
 
-    //    构建 Streaming Context 对象
+    //    构建 Streaming Context 对象StreamingContext
 
     //    创建 InputDStream
 
