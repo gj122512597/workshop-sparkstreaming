@@ -80,6 +80,14 @@ object WebPagePopularityValueCalculator {
 
     val stateDstream = popularityData.updateStateByKey[Double](updatePopularityValue,new HashPartitioner(ssc.sparkContext.defaultParallelism), true, initialRDD)
 
+//    popularityData.updateStateByKey{
+//      case(seq,buffer)=>{
+//        val Sum=seq.sum+buffer.getOrElse(0)
+//        Option(Sum)
+//      }
+//    }
+
+
 
     //set the checkpoint interval to avoid too frequently data checkpoint which may
     //may significantly reduce operation throughput

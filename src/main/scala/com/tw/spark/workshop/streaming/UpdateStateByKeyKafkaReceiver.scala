@@ -51,7 +51,12 @@ object UpdateStateByKeyKafkaReceiver {
 
 
     //将转换结构后的数据进行聚合
-    val stateDStream: DStream[(String, Int)] = mapDStream.updateStateByKey {
+
+
+    val stateDStream: DStream[(String, Int)] = mapDStream.updateStateByKey(updateFunction)
+
+
+    val stateDStream2: DStream[(String, Int)] = mapDStream.updateStateByKey {
       case (seq, buffer) => {
         val sum = buffer.getOrElse(0) + seq.sum
         Option(sum)
@@ -62,11 +67,18 @@ object UpdateStateByKeyKafkaReceiver {
     stateDStream.print()
 
 
+
     //启动采集器
     ssc.start()
     //Driver等待采集器的执行
     ssc.awaitTermination()
 
+  }
+
+
+  def updateFunction(newValues: Seq[Int], runningCount: Option[Int]): Option[Int] = {
+    val newCount = runningCount.getOrElse(0) + newValues.sum
+    Option(newCount)
   }
 
 }
