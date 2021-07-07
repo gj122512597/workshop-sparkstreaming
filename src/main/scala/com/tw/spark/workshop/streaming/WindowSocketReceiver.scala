@@ -13,14 +13,14 @@ object WindowSocketReceiver {
 
 
     //Scala的窗口操作
-    val ints = List(1, 2, 3, 4, 5, 6)
-
-    //滑动
-    val intses: Iterator[List[Int]] = ints.sliding(2, 2)
-
-    for (list <- intses) {
-      println(list.mkString(","))
-    }
+//    val ints = List(1, 2, 3, 4, 5, 6,7,8)
+//
+//    //滑动
+//    val intses: Iterator[List[Int]] = ints.sliding(4, 1)
+//
+//    for (list <- intses) {
+//      println(list.mkString(","))
+//    }
 
     val conf = new SparkConf().setAppName("stream word count").setMaster("local[*]")
     //

@@ -56,12 +56,12 @@ object UpdateStateByKeyKafkaReceiver {
     val stateDStream: DStream[(String, Int)] = mapDStream.updateStateByKey(updateFunction)
 
 
-    val stateDStream2: DStream[(String, Int)] = mapDStream.updateStateByKey {
-      case (seq, buffer) => {
-        val sum = buffer.getOrElse(0) + seq.sum
-        Option(sum)
-      }
-    }
+//    val stateDStream2: DStream[(String, Int)] = mapDStream.updateStateByKey {
+//      case (seq, buffer) => {
+//        val sum = buffer.getOrElse(0) + seq.sum
+//        Option(sum)
+//      }
+//    }
 
 
     stateDStream.print()
